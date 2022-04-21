@@ -22,9 +22,9 @@ main() {
     mv /tmp/grpc-tpl-main ${gopath}/src/${projname} && cd ${gopath}/src/${projname}
 
     if [ `uname` = 'Darwin' ]; then
-        sed -i '' -e "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
+        sed -i '' -e "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "*.proto" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
     else
-        sed -i "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
+        sed -i "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "*.proto" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
     fi
 
     if [ $? -ne 0 ]
