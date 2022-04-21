@@ -1,0 +1,63 @@
+syntax = "proto3";
+package pb;
+option go_package = "github.com/axiaoxin-com/grpc-tpl/pb";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+// 服务接口定义
+service GrpcTplService {
+    // Post方法
+    rpc Post(PostReq) returns (PostRsp) {
+        option (google.api.http) = {
+            post: "/"
+            body: "*"
+        };
+    }
+    // Get方法
+    rpc Get(GetReq) returns (GetRsp) {
+        option (google.api.http) = {
+            get: "/"
+        };
+    }
+}
+
+// Post请求参数
+message PostReq {
+    int32 AppID = 1;
+    int32 ObjID = 2;
+    int32 AuthorID = 3;
+    string AuthorNickname = 4;
+    string IP = 5;
+    string UserAgent = 6;
+}
+
+// Post返回结果
+message PostRsp {
+    // 主键ID
+    int32 ID = 1;
+}
+
+// Get请求参数
+message GetReq {
+    int32 AppID = 1;
+    int32 ObjID = 2;
+    int32 Offset = 3;
+    int32 Limit = 4;
+}
+
+// Data消息体
+message Data {
+    int32 ID = 1;
+    int32 AuthorID = 2;
+    string AuthorNickname = 3;
+    string IP = 4;
+    string Location = 5;
+    google.protobuf.Timestamp CreatedAt = 6;
+    google.protobuf.Timestamp UpdatedAt = 7;
+}
+
+
+// 获取评论返回结果
+message GetRsp {
+    repeated Data data = 1;
+}

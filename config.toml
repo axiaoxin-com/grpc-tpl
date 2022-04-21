@@ -1,0 +1,63 @@
+env = "localhost"
+
+[mysql]
+    [mysql.localhost.test_db]
+        host = "localhost"
+        port = 3306
+        username = "root"
+        password = "roooooot"
+        dbname = "test"
+        log_mode = true
+        max_idle_conns = 5
+        max_open_conns = 10
+        conn_max_life_minutes = 10
+        conn_timeout = 3
+        read_timeout = 5
+        write_timeout = 5
+
+    [mysql.prod.test_db]
+        host = "127.0.0.1"
+        port = 3306
+        username = "root"
+        password = ""
+        dbname = "test"
+        log_mode = false
+        max_idle_conns = 5
+        max_open_conns = 10
+        conn_max_life_minutes = 10
+        conn_timeout = 3
+        read_timeout = 5
+        write_timeout = 5
+
+
+
+[grpc]
+    [grpc.localhost]
+
+    [grpc.prod]
+
+
+
+[redis]
+    [redis.localhost]
+        addr = "localhost:6379"
+        password = ""
+        db = 0
+        dial_timeout = 5
+        read_timeout = 5
+        write_timeout = 5
+        pool_size = 5
+
+    [redis.prod]
+        addr = ""
+        password = ""
+        db = 0
+        dial_timeout = 5
+        read_timeout = 5
+        write_timeout = 5
+        pool_size = 5
+
+
+
+[logging]
+    level = "debug"
