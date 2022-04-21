@@ -1,4 +1,4 @@
-// Package main 评论点赞服务
+// Package main GRPC服务
 package main
 
 import (

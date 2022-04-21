@@ -12,14 +12,14 @@ main() {
 
     # get template project
     echo -e "Downloading the template..."
-    if !(curl https://codeload.github.com/axiaoxin-com/grpc-tpl/zip/master -o /tmp/grpc-tpl.zip && unzip /tmp/grpc-tpl.zip -d /tmp)
+    if !(curl https://codeload.github.com/axiaoxin-com/grpc-tpl/zip/main -o /tmp/grpc-tpl.zip && unzip /tmp/grpc-tpl.zip -d /tmp)
     then
         echo "Downloading failed."
         exit -2
     fi
 
     echo -e "Generating the project..."
-    mv /tmp/grpc-tpl-master ${gopath}/src/${projname} && cd ${gopath}/src/${projname}
+    mv /tmp/grpc-tpl-main ${gopath}/src/${projname} && cd ${gopath}/src/${projname}
 
     if [ `uname` = 'Darwin' ]; then
         sed -i '' -e "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`

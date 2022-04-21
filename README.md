@@ -8,5 +8,5 @@ A template project for GRPC service
 Execute the script to create your grpc service with this template:
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/axiaoxin-com/grpc-tpl/master/new_project.sh)
+bash <(curl -s https://raw.githubusercontent.com/axiaoxin-com/grpc-tpl/main/new_project.sh)
 ```
