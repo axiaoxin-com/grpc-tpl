@@ -9,7 +9,6 @@ main() {
     echo -e "New project will be create in ${gopath}/src/"
     echo -ne "Enter your new project full name (eg. github.com/my_username/my_projname): "
     read projname
-    proj_basename = `basename ${projname}`
 
     # get template project
     echo -e "Downloading the template..."
@@ -24,10 +23,8 @@ main() {
 
     if [ `uname` = 'Darwin' ]; then
         sed -i '' -e "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
-        sed -i '' -e "s|grpc_tpl|${proj_basename}|g" `grep "grpc_tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
     else
         sed -i "s|github.com/axiaoxin-com/grpc-tpl|${projname}|g" `grep "grpc-tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
-        sed -i "s|grpc_tpl|${proj_basename}|g" `grep "grpc_tpl" --include "swagger.*" --include ".travis.yml" --include "*.go" --include "go.*" -rl .`
     fi
 
     if [ $? -ne 0 ]
