@@ -5,7 +5,7 @@ go 1.16
 replace github.com/axiaoxin-com/grpc-tpl/pb => ./pb
 
 require (
-	github.com/axiaoxin-com/goutils v1.0.24
+	github.com/axiaoxin-com/goutils v1.0.30
 	github.com/axiaoxin-com/logging v1.2.13
 	github.com/bsm/redislock v0.7.2
 	github.com/go-redis/redis/v8 v8.11.5

@@ -84,8 +84,8 @@ github.com/armon/go-metrics v0.3.10/go.mod h1:4O98XIr/9W0sxpJ8UaYkvjk10Iff7SnFrb
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
 github.com/armon/go-radix v1.0.0/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
 github.com/axiaoxin-com/goutils v1.0.22/go.mod h1:sNzdHEXtLmJI95i/UBHMZOfHVYYLAbMVubEJ2b5mvh4=
-github.com/axiaoxin-com/goutils v1.0.24 h1:K1lcg9JU070jYsplcRT9iMId12izGePN9zEwKgXUpVo=
-github.com/axiaoxin-com/goutils v1.0.24/go.mod h1:T7dkpLMBTgIzUiFVidPwmb6v01GyLYFpU+FSwlaUe7Y=
+github.com/axiaoxin-com/goutils v1.0.28 h1:j4Or6v9kD2DJxhhArdPuD4e9hsZHXz6L/edsetqm2j8=
+github.com/axiaoxin-com/goutils v1.0.28/go.mod h1:rv+Rpx/kPwogcFIC/SYvunHfNg88FYXoPPiSu8nWi34=
 github.com/axiaoxin-com/logging v1.2.13 h1:CvT43zYQCqUUj0zfZaiEev0BMXr+Jjw3HdMaKwTYDdw=
 github.com/axiaoxin-com/logging v1.2.13/go.mod h1:DdnCi4j9BoQPJp8c2A9DNDQIB+NlSO5OAKR5LRwV3b0=
 github.com/aymerick/raymond v2.0.3-0.20180322193309-b565731e1464+incompatible/go.mod h1:osfaiScAUVup+UC9Nfq76eWqDhXlp+4UYaA8uhTBO6g=
