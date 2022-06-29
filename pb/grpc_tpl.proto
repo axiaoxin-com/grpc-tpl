@@ -57,7 +57,7 @@ message Data {
 }
 
 
-// 获取评论返回结果
+// Get返回结果
 message GetRsp {
     repeated Data data = 1;
 }
