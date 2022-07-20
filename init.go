@@ -12,6 +12,7 @@ import (
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -23,6 +24,13 @@ const (
 var (
 	// DB mysql 库
 	DB *gorm.DB
+	// DefaultMySQLMaxIdleConns db默认最大空闲连接数
+	DefaultMySQLMaxIdleConns = 2
+	// DefaultMySQLMaxOpenConns db默认最大连接数
+	DefaultMySQLMaxOpenConns = 10
+	// DefaultMySQLConnMaxLifetime db连接默认可复用的最大时间
+	DefaultMySQLConnMaxLifetime = time.Hour
+
 	// RedisClient redis 客户端
 	RedisClient *redis.Client
 	// RedisLocker redis 分布式锁
@@ -44,12 +52,25 @@ func InitGrpc() {
 // InitDB 初始化数据库
 func InitDB() {
 	if DB == nil {
-		db, err := goutils.GormMySQL(fmt.Sprintf("%s.test_db", viper.GetString("env")))
+		dsn := viper.GetString(fmt.Sprintf("mysql.%s.test_db.dsn", viper.GetString("env")))
+		logging.Debug(nil, "InitDB load dsn:"+dsn)
+
+		gormdb, err := gorm.Open(mysql.Open(dsn), &gorm.Config{Logger: logging.NewGormLogger(zap.InfoLevel, zap.DebugLevel, viper.GetDuration("logging.access_logger.slow_threshold")*time.Millisecond)})
 		if err != nil {
-			logging.Fatal(nil, "init gorm mysql error: "+err.Error())
+			logging.Fatal(nil, "InitDB gorm open error:"+err.Error())
 		}
-		gormLogger := logging.NewGormLogger(zap.InfoLevel, zap.InfoLevel, time.Millisecond*500)
-		DB = db.Session(&gorm.Session{Logger: gormLogger})
+		db, err := gormdb.DB()
+		if err != nil {
+			logging.Fatal(nil, "InitDB gormdb get db error:"+err.Error())
+		}
+		db.SetMaxIdleConns(DefaultMySQLMaxIdleConns)
+		db.SetConnMaxLifetime(DefaultMySQLConnMaxLifetime)
+		db.SetMaxOpenConns(DefaultMySQLMaxOpenConns)
+		if err := db.Ping(); err != nil {
+			logging.Fatal(nil, "InitDB gorm db ping error:"+err.Error())
+		}
+
+		DB = gormdb
 	}
 }
 
